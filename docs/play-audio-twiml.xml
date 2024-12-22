@@ -1,21 +1,4 @@
-from flask import Flask, request, Response
-from twilio.twiml.voice_response import VoiceResponse
-
-app = Flask(__name__)
-
-
-@app.route("/play_mp3.xml", methods=["GET"])
-def play_mp3():
-    # Get the MP3 URL from the query parameter
-    mp3_url = request.args.get("https://drive.google.com/uc?export=download&id=1Vd0EspvI8fmPfjZ6Z7br4xw5iYeoN2Cs")
-
-    # Create a TwiML response
-    response = VoiceResponse()
-    response.play(mp3_url, loop=0)  # loop=0 means infinite loop
-
-    # Return the TwiML as XML response
-    return Response(str(response), content_type="application/xml")
-
-
-if __name__ == "__main__":
-    app.run(debug=True)
+<?xml version="1.0" encoding="UTF-8"?>
+<Response>
+  <Play>https://example.com/your-audio-file.mp3</Play>
+</Response>
